@@ -47,7 +47,16 @@ class class_weixin
 	protected function http_request($url,$data = null){
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL,$url);
-		
+		curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,FALSE);
+		curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,FALSE);
+		if (!empty($data)) {
+			curl_setopt($curl,CURLOPT_POSET,1);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+		}
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+		$outopt = curl_exec($curl);
+		curl_close($curl);
+		return $outopt;
 	}
 
 }
