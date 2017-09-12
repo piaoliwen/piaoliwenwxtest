@@ -1,4 +1,6 @@
 <?php
+class class_weixin{
+
 	var $appid = APPID;
 	var $appsecret = APPSECRET;
 	public function __construct($appid = null; $appsecret = null){
@@ -8,6 +10,7 @@
 
 		}
 	}
+
 	//生成OAuth2.0的url
 	public function oath2_authorize($redirect_url,$scope,$state=null){
 		$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."$redirect_url=".$redirect_url."&response_type=code&scope".$this->scope."&state=".$state."#wechat_redirect";
@@ -25,5 +28,5 @@
 		$res = $this->http_request($url);
 		return json_decode($res,true);
 	}
-	//http请求
-	
+	//
+}
